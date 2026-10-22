@@ -3,53 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acessando Cetor...</title>
+    <title>Redirecionando...</title>
 
-    <meta http-equiv="refresh" content="0; url=https://cetor-sorteio.netlify.app">
+    <!--
+      INSTRUÇÕES DE USO:
+      1. Altere a URL na linha abaixo para o seu link de destino desejado.
+         É o único lugar que você precisa editar!
+      2. Salve este arquivo com o nome "index.html".
+      3. Faça o upload para o seu repositório no GitHub Pages.
+
+      COMO FUNCIONA:
+      - A tag <meta http-equiv="refresh"> faz o redirecionamento imediato. É a forma mais rápida e compatível.
+      - O código JavaScript abaixo serve como uma garantia (fallback). Se, por algum motivo, o meta refresh falhar,
+        o JavaScript fará o redirecionamento.
+    -->
+
+    <!-- ***** EDITE AQUI O SEU LINK DE DESTINO ***** -->
+    <meta http-equiv="refresh" content="0; url=https://cetor-sorteio.netlify.app/">
+
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #f4f4f9;
+            background-color: #f0f0f0;
             color: #333;
             text-align: center;
         }
         .container {
             padding: 20px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            max-width: 400px;
-            width: 90%;
         }
-        h1 { font-size: 20px; margin-bottom: 10px; }
-        p { font-size: 14px; color: #666; }
-        a { color: #0056b3; text-decoration: none; font-weight: bold; }
-        a:hover { text-decoration: underline; }
+        a {
+            color: #007bff;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Redirecionando para o Google...</h1>
-        <p>
-            Se você não for redirecionado automaticamente em alguns segundos, 
-            <a id="link-destino" href="https://cetor-sorteio.netlify.app">clique aqui</a>.
-        </p>
+        <h1>Redirecionando...</h1>
+        <p>Você está sendo redirecionado. Se nada acontecer em alguns segundos, <a id="link-destino" href="https://cetor-sorteio.netlify.app">clique aqui</a>.</p>
     </div>
 
     <script>
-        // REDIRECIONAMENTO SECUNDÁRIO (FALLBACK JS):
-        // Variável declarada explicitamente para evitar erros de formatação com URLs muito complexas.
-        const urlDestino = "https://cetor-sorteio.netlify.app";
+        // Pega a URL da tag meta para não precisar editar em dois lugares.
+        const metaTag = document.querySelector('meta[http-equiv="refresh"]');
+        const urlDestino = metaTag ? metaTag.getAttribute('content').split('url=')[1] : 'https://cetor-sorteio.netlify.app';
 
-        // Força o redirecionamento via JavaScript após 1 segundo caso o HTML Meta Refresh falhe.
-        setTimeout(function() {
-            window.location.href = urlDestino;
-        }, 1000);
-    </script>
-</body>
-</html>
+        // Atualiza o link de fallback no corpo da página
+        document.getElementById('link-destino').href = urlDestino;
